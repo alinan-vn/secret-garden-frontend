@@ -4,7 +4,7 @@
 (function main() {
     // showCreateUser();
     fetchBooks();
-    clickListerner();
+    clickListener();
 })();
 
 // function showCreateUser() {
@@ -61,7 +61,9 @@ function renderBook(book,ul) {
 //render show User
 //Username
 //fetchbookList
-
+function clickListerner() {
+    document.addEventListener('click',)
+}
 //Book Show Page
 //get coverImage
 //get title
