@@ -4,7 +4,7 @@
 (function main() {
     // showCreateUser();
     fetchBooks();
-    clickListener();
+    // clickListener();
 })();
 
 // function showCreateUser() {
@@ -44,8 +44,9 @@ function fetchBooks() {
 };
 
 function renderBooks(books) {
-    const main = document.querySelector('.main');
+    const main = document.querySelector('div.main');
     const ul = document.createElement('ul');
+    ul.id = "booklist";
     books.forEach(book => renderBook(book,ul));
     main.append(ul);
 };
@@ -53,7 +54,7 @@ function renderBooks(books) {
 function renderBook(book,ul) {
     const li = document.createElement('li');
     li.dataset.id = book.id;
-    li.innertext = book.title;
+    li.innerHTML = book.title;
     ul.append(li);
 }
 //fetchUsers
@@ -61,10 +62,16 @@ function renderBook(book,ul) {
 //render show User
 //Username
 //fetchbookList
-function clickListerner() {
-    document.addEventListener('click',)
-}
-//Book Show Page
+// function clickListener() {
+//     document.addEventListener('click',function(e) {
+//         const id = e.target.dataset.id;
+//         fetch(API.books + id)
+//         .then(resp => resp.json())
+//         .then(bookPage);
+//     });
+// };
+// //Book Show Page
+// function bookPage()
 //get coverImage
 //get title
 //get description
