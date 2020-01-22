@@ -3,13 +3,12 @@ let current_user;
 let current_user_books = [];
 
 (function main() {
-    // showCreateUser();
-    fetchBooks();
-    clickListener();
+  fetchBooks();
+  clickListener();
 })();
 
 // function showCreateUser() {
-//     const button = document.querySelector('button#create-user');
+//     const button = document.querySelector('#signin');
 //     button.addEventListener('click', showUserForm(event));
 // };
 
@@ -18,7 +17,7 @@ let current_user_books = [];
 //     //enter username User.create_or_find_by username
 //     //document.querySelector('#username')
 //     //if logged in, hide form, add logout button
-    
+
 // };
 
 // function submitListener() {
@@ -43,39 +42,45 @@ let current_user_books = [];
 //display list of users
 //book show page from with add/read button
 //user profile page with list of read books
+function removeChildElementsFor(parentElement) {
+    let childElement;
+    while (childElement = parentElement.lastElementChild) {
+        parentElement.removeChild(childElement);
+    };
+};
 
 //fetchbooks or search API
 function fetchBooks() {
     fetch(API.books)
     .then(resp => resp.json())
     .then(renderBooks);
-};
+}
 
 function renderBooks(books) {
-    const main = document.querySelector('div.main');
-    const ul = document.createElement('ul');
-    ul.id = "booklist";
-    books.forEach(book => renderBook(book,ul));
-    main.append(ul);
-};
+    const main = document.querySelector("div.main");
+    removeChildElementsFor(main);
 
-function renderBook(book,ul) {
-    const li = document.createElement('li');
-    li.dataset.id = book.id;
-    li.innerHTML = book.title;
-    ul.append(li);
+    const ul = document.createElement("ul");
+    ul.id = "booklist";
+    books.forEach(book => renderBook(book, ul));
+    main.append(ul);
 }
+
+function renderBook(book, ul) {
+  const li = document.createElement("li");
+  li.dataset.id = book.id;
+  li.innerHTML = book.title;
+  ul.append(li);
+};
 //fetchUsers
 
 //render show User
 //Username
 
 function clickListener() {
-
-    
     document.addEventListener('click',function(e) {
-        //switch case 
         const click = e.target.parentNode.id
+        
         switch (click) {
         case 'booklist':
             const id = e.target.dataset.id;
@@ -88,7 +93,12 @@ function clickListener() {
             postBookcase(bookId);
             break;
         case 'books-index':
-            
+            fetchBooks();
+            break;
+        case 'signin':
+            const loginDiv = document.querySelector('.login-wrap');
+            loginDiv.classList.toggle('hide');
+            break;
         };
     });
 };
@@ -112,40 +122,35 @@ function postBookcase(bookId) {
 function bookPage(book) {
     let bookId = book.id
     const main = document.querySelector('.main');
-    main.firstElementChild.remove();
+    removeChildElementsFor(main);
 
-    const h2 = document.createElement('h2');
+    const h2 = document.createElement("h2");
     h2.innerHTML = book.title;
-    
-    const cover = document.createElement('img');
+
+    const cover = document.createElement("img");
     cover.src = book.cover_image;
 
-    const h3 = document.createElement('h3');
+    const h3 = document.createElement("h3");
     h3.innerHTML = book.author;
 
-    const h4 = document.createElement('h4');
+    const h4 = document.createElement("h4");
     h4.innerHTML = book.publisher;
 
-    const desc = document.createElement('p');
+    const desc = document.createElement("p");
     desc.innerHTML = book.description;
 
-    const pages = document.createElement('p');
+    const pages = document.createElement("p");
     pages.innerHTML = `${book.page_count} pages`;
 
-    const genre = document.createElement('p');
+    const genre = document.createElement("p");
     genre.innerHTML = `Genre: ${book.genre}`;
 
     main.append(h2,cover,h3,h4,desc,pages,genre);
-
-    if (logged_in) {
-        if (!current_user_books.some(bookId)){
-            const addBtn = document.createElement('button');
-            button.innerText = "add to Bookcase";
-            button.id = "add-button";
-            button.dataset.bookId = bookId;
-            main.append(addBtn);
-        };
-    };
+    const addBtn = document.createElement('button');
+    button.innerText = "add to Bookcase";
+    button.id = "add-button";
+    button.dataset.bookId = bookId;
+    main.append(addBtn);
 
     //needs add/read button, only shown if logged_in
     // if (!logged_in) {
