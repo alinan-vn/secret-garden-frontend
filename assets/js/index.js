@@ -64,12 +64,18 @@ function renderBook(book,ul) {
 
 function clickListener() {
 
-    //switch case 
+    
     document.addEventListener('click',function(e) {
-        const id = e.target.dataset.id;
-        fetch(API.books + id)
-        .then(resp => resp.json())
-        .then(bookPage);
+        //switch case 
+        const click = e.target.parentNode.id
+        switch (click) {
+        case 'booklist':
+            const id = e.target.dataset.id;
+            fetch(API.books + id)
+            .then(resp => resp.json())
+            .then(bookPage);
+            break;
+        };
     });
 };
 // //Book Show Page
@@ -90,13 +96,13 @@ function bookPage(book) {
     h4.innerHTML = book.publisher;
 
     const desc = document.createElement('p');
-    p.innerHTML = book.description;
+    desc.innerHTML = book.description;
 
     const pages = document.createElement('p');
     pages.innerHTML = `${book.page_count} pages`;
 
     const genre = document.createElement('p');
-    genre.innerHTML = `Genre: ${genre}`;
+    genre.innerHTML = `Genre: ${book.genre}`;
 
     main.append(h2,cover,h3,h4,desc,pages,genre);
 
