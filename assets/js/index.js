@@ -97,6 +97,14 @@ function clickListener() {
         case 'users-index':
             fetchUsers();
             break;
+        case 'button signin':
+            console.log(e.target.parentNode.previousElementSibling.lastElementChild.value);
+            e.target.parentNode.previousElementSibling.lastElementChild.value = '';
+            break;
+        case 'button signup':
+            console.log(e.target.parentNode.previousElementSibling.lastElementChild.value);
+            e.target.parentNode.previousElementSibling.lastElementChild.value = '';
+            break;
         };
     });
 };
@@ -115,7 +123,8 @@ function postBookcase(bookId) {
     fetch(API.bookcases,reqObj)
     .then(resp => resp.json())
     .then();
-}
+};
+
 
 function userPage(user) {
     const main = document.querySelector('main');
@@ -128,6 +137,7 @@ function userPage(user) {
     user.books.forEach(book => renderBook(book, ul));
     const userBooks = ul.children;
     const rmvBtn = document.createElement('button');
+    userBooks.forEach(book => book.append(rmvBtn));
     main.append(h2,ul);
 };
 
@@ -160,13 +170,13 @@ function bookPage(book) {
 
     main.append(h2,cover,h3,h4,desc,pages,genre);
     const addBtn = document.createElement('button');
-    button.innerText = "add to Bookcase";
-    button.className = "add-button";
-    button.dataset.bookId = bookId;
+    addBtn.innerText = "add to Bookcase";
+    addBtn.className = "add-button";
+    addBtn.dataset.bookId = bookId;
     main.append(addBtn);
 
     // needs add/read button, only shown if logged_in
     if (!logged_in) {
-        attBtn.classList.toggle('hide');
+        addBtn.classList.toggle('hide');
     };
 };
