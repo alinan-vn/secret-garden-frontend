@@ -26,7 +26,6 @@ function renderUsers(users) {
     removeChildElementsFor(main);
 
     const ul = document.createElement("ul");
-    ul.id = "userlist";
     users.forEach(user => renderUser(user, ul));
     main.append(ul);
 };
@@ -35,6 +34,7 @@ function renderUser(user, ul) {
     const li = document.createElement('li');
     li.dataset.id = user.id;
     li.innerHTML = `${user.username}'s Bookcase`;
+    li.className = 'userlist';
     ul.append(li);
 };
 
@@ -50,7 +50,6 @@ function renderBooks(books) {
     removeChildElementsFor(main);
 
     const ul = document.createElement("ul");
-    ul.id = "booklist";
     books.forEach(book => renderBook(book, ul));
     main.append(ul);
 };
@@ -59,6 +58,7 @@ function renderBook(book, ul) {
   const li = document.createElement("li");
   li.dataset.id = book.id;
   li.innerHTML = book.title;
+  li.className = 'booklist';
   ul.append(li);
 };
 //fetchUsers
@@ -68,18 +68,24 @@ function renderBook(book, ul) {
 
 function clickListener() {
     document.addEventListener('click',function(e) {
-        const click = e.target.parentNode.id
+        const click = e.target.className;
         
         switch (click) {
         case 'booklist':
-            const id = e.target.dataset.id;
-            fetch(API.books + id)
+            const bookId = e.target.dataset.id;
+            fetch(API.books + bookId)
             .then(resp => resp.json())
             .then(bookPage);
             break;
+        case 'userlist':
+            const userId = e.target.dataset.id;
+            fetch(API.users + userId)
+            .then(resp => resp.json())
+            .then(userPage);
+            break;
         case 'add-button':
-            const bookId = e.target.dataset.bookId;
-            postBookcase(bookId);
+            const bookAdd = e.target.dataset.bookId;
+            postBookcase(bookAdd);
             break;
         case 'books-index':
             fetchBooks();
@@ -110,6 +116,21 @@ function postBookcase(bookId) {
     .then(resp => resp.json())
     .then();
 }
+
+function userPage(user) {
+    const main = document.querySelector('main');
+    removeChildElementsFor(main);
+
+    const h2 = document.createElement('h2');
+    h2.innerHTML = `${user.username}'s Bookcase`;
+
+    const ul = document.createElement("ul");
+    user.books.forEach(book => renderBook(book, ul));
+    const userBooks = ul.children;
+    const rmvBtn = document.createElement('button');
+    main.append(h2,ul);
+};
+
 // //Book Show Page
 function bookPage(book) {
     let bookId = book.id;
@@ -140,7 +161,7 @@ function bookPage(book) {
     main.append(h2,cover,h3,h4,desc,pages,genre);
     const addBtn = document.createElement('button');
     button.innerText = "add to Bookcase";
-    button.id = "add-button";
+    button.className = "add-button";
     button.dataset.bookId = bookId;
     main.append(addBtn);
 
