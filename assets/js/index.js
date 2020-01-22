@@ -1,10 +1,10 @@
-
+let logged_in = false;
 
 
 (function main() {
     // showCreateUser();
     fetchBooks();
-    // clickListener();
+    clickListener();
 })();
 
 // function showCreateUser() {
@@ -61,20 +61,44 @@ function renderBook(book,ul) {
 
 //render show User
 //Username
-//fetchbookList
-// function clickListener() {
-//     document.addEventListener('click',function(e) {
-//         const id = e.target.dataset.id;
-//         fetch(API.books + id)
-//         .then(resp => resp.json())
-//         .then(bookPage);
-//     });
-// };
+
+function clickListener() {
+
+    //switch case 
+    document.addEventListener('click',function(e) {
+        const id = e.target.dataset.id;
+        fetch(API.books + id)
+        .then(resp => resp.json())
+        .then(bookPage);
+    });
+};
 // //Book Show Page
-// function bookPage()
-//get coverImage
-//get title
-//get description
-//get publisher
-//get genre
-//get page count
+function bookPage(book) {
+    const main = document.querySelector('.main');
+    main.firstElementChild.remove();
+
+    const h2 = document.createElement('h2');
+    h2.innerHTML = book.title;
+    
+    const cover = document.createElement('img');
+    cover.src = book.cover_image;
+
+    const h3 = document.createElement('h3');
+    h3.innerHTML = book.author;
+
+    const h4 = document.createElement('h4');
+    h4.innerHTML = book.publisher;
+
+    const desc = document.createElement('p');
+    p.innerHTML = book.description;
+
+    const pages = document.createElement('p');
+    pages.innerHTML = `${book.page_count} pages`;
+
+    const genre = document.createElement('p');
+    genre.innerHTML = `Genre: ${genre}`;
+
+    main.append(h2,cover,h3,h4,desc,pages,genre);
+
+    //needs add/read button, only shown if logged_in
+};
