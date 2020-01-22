@@ -7,41 +7,7 @@ let current_user_books = [];
   clickListener();
 })();
 
-// function showCreateUser() {
-//     const button = document.querySelector('#signin');
-//     button.addEventListener('click', showUserForm(event));
-// };
 
-// function loginForm() {
-//     submitListener();
-//     //enter username User.create_or_find_by username
-//     //document.querySelector('#username')
-//     //if logged in, hide form, add logout button
-
-// };
-
-// function submitListener() {
-//     const form = document.querySelector('form#login');
-//     form.addEventListener('submit',login(event));
-// };
-
-// function login(e) {
-//     e.preventDefault();
-//     //const username = e.target.value
-    //fetch(API.users + username)
-    //.then(resp => resp.json())
-    //.then(logUserIn);
-// };
-
-//function logUserIn(user) {
-    //current_user = user.id;
-    //current_user_books = user.books;
-// };
-
-//list of books or booksearch that try to pull from 
-//display list of users
-//book show page from with add/read button
-//user profile page with list of read books
 function removeChildElementsFor(parentElement) {
     let childElement;
     while (childElement = parentElement.lastElementChild) {
@@ -49,22 +15,45 @@ function removeChildElementsFor(parentElement) {
     };
 };
 
+function fetchUsers() {
+    fetch(API.users)
+    .then(resp => resp.json())
+    .then(renderUsers);
+};
+
+function renderUsers(users) {
+    const main = document.querySelector('main');
+    removeChildElementsFor(main);
+
+    const ul = document.createElement("ul");
+    ul.id = "userlist";
+    users.forEach(user => renderUser(user, ul));
+    main.append(ul);
+};
+
+function renderUser(user, ul) {
+    const li = document.createElement('li');
+    li.dataset.id = user.id;
+    li.innerHTML = `${user.username}'s Bookcase`;
+    ul.append(li);
+};
+
 //fetchbooks or search API
 function fetchBooks() {
     fetch(API.books)
     .then(resp => resp.json())
     .then(renderBooks);
-}
+};
 
 function renderBooks(books) {
-    const main = document.querySelector("div.main");
+    const main = document.querySelector('main');
     removeChildElementsFor(main);
 
     const ul = document.createElement("ul");
     ul.id = "booklist";
     books.forEach(book => renderBook(book, ul));
     main.append(ul);
-}
+};
 
 function renderBook(book, ul) {
   const li = document.createElement("li");
@@ -99,6 +88,9 @@ function clickListener() {
             const loginDiv = document.querySelector('.login-wrap');
             loginDiv.classList.toggle('hide');
             break;
+        case 'users-index':
+            fetchUsers();
+            break;
         };
     });
 };
@@ -120,8 +112,8 @@ function postBookcase(bookId) {
 }
 // //Book Show Page
 function bookPage(book) {
-    let bookId = book.id
-    const main = document.querySelector('.main');
+    let bookId = book.id;
+    const main = document.querySelector('main');
     removeChildElementsFor(main);
 
     const h2 = document.createElement("h2");
@@ -152,8 +144,8 @@ function bookPage(book) {
     button.dataset.bookId = bookId;
     main.append(addBtn);
 
-    //needs add/read button, only shown if logged_in
-    // if (!logged_in) {
-    //     genre.classList.toggle('hide');
-    // }
+    // needs add/read button, only shown if logged_in
+    if (!logged_in) {
+        attBtn.classList.toggle('hide');
+    };
 };
