@@ -1,5 +1,6 @@
 let logged_in = false;
-
+let current_user;
+let current_user_books = [];
 
 (function main() {
     // showCreateUser();
@@ -27,9 +28,16 @@ let logged_in = false;
 
 // function login(e) {
 //     e.preventDefault();
-//     //login = e.target.value
+//     //const username = e.target.value
+    //fetch(API.users + username)
+    //.then(resp => resp.json())
+    //.then(logUserIn);
 // };
 
+//function logUserIn(user) {
+    //current_user = user.id;
+    //current_user_books = user.books;
+// };
 
 //list of books or booksearch that try to pull from 
 //display list of users
@@ -75,11 +83,34 @@ function clickListener() {
             .then(resp => resp.json())
             .then(bookPage);
             break;
+        case 'add-button':
+            const bookId = e.target.dataset.bookId;
+            postBookcase(bookId);
+            break;
+        case 'books-index':
+            
         };
     });
 };
+
+function postBookcase(bookId) {
+    const reqObj = {
+        "method": "POST",
+        "headers": API.headers,
+        "body": JSON.stringify(
+            {
+                "user_id": current_user,
+                "book_id": bookId
+            }
+        )
+    };
+    fetch(API.bookcases,reqObj)
+    .then(resp => resp.json())
+    .then();
+}
 // //Book Show Page
 function bookPage(book) {
+    let bookId = book.id
     const main = document.querySelector('.main');
     main.firstElementChild.remove();
 
@@ -106,5 +137,18 @@ function bookPage(book) {
 
     main.append(h2,cover,h3,h4,desc,pages,genre);
 
+    if (logged_in) {
+        if (!current_user_books.some(bookId)){
+            const addBtn = document.createElement('button');
+            button.innerText = "add to Bookcase";
+            button.id = "add-button";
+            button.dataset.bookId = bookId;
+            main.append(addBtn);
+        };
+    };
+
     //needs add/read button, only shown if logged_in
+    // if (!logged_in) {
+    //     genre.classList.toggle('hide');
+    // }
 };
