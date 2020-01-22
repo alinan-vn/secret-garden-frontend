@@ -1,54 +1,91 @@
 <!DOCTYPE html>
-<html class="no-js">
+<html>
   <head>
-    <meta charset="utf-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <title>the Secret Garden: Your Read Lists</title>
-    <meta name="description" content="" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <link rel="stylesheet" href="" />
+    <link rel="stylesheet" type="text/css" href="assets/css/styles.css" />
   </head>
+
   <body>
-    <!-- header login-field loggedin Username, link to usersbooks, logout button
-        <div class="container">
-            <form class="create-user">
-              <h3>Create a user!</h3>
-
+    <div class="login-wrap">
+      <div class="login-html">
+        <input
+          id="tab-1"
+          type="radio"
+          name="tab"
+          class="sign-in"
+          checked
+        /><label for="tab-1" class="tab">Sign In</label>
+        <input id="tab-2" type="radio" name="tab" class="sign-up" /><label
+          for="tab-2"
+          class="tab"
+          >Sign Up</label
+        >
+        <div class="login-form">
+          <div class="sign-in-htm">
+            <div class="group">
+              <label for="user" class="label">Username</label>
+              <input id="user" type="text" class="input" />
+            </div>
+            <div class="group">
+              <label for="pass" class="label">Password</label>
               <input
-                type="text"
-                name="name"
-                value=""
-                placeholder="Enter your desired Username..."
-                class="input-text"
+                id="pass"
+                type="password"
+                class="input"
+                data-type="password"
               />
-            </form>
+            </div>
+            <div class="group">
+              <input id="check" type="checkbox" class="check" checked />
+              <label for="check"
+                ><span class="icon"></span> Keep me Signed in</label
+              >
+            </div>
+            <div class="group">
+              <input type="submit" class="button" value="Sign In" />
+            </div>
+            <div class="hr"></div>
+            <div class="foot-lnk">
+              <a href="#forgot">Forgot Password?</a>
+            </div>
           </div>
-        //booksearch-field -->
-
-    <div class="main"></div>
-    <!-- main show usersbooks
-        show users index
-        show books index search results
-        show book rendered show page -->
-
-    <!-- Optional JavaScript -->
-    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
-    <script
-      src="https://code.jquery.com/jquery-3.4.1.slim.min.js"
-      integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n"
-      crossorigin="anonymous"
-    ></script>
-    <script
-      src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
-      integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
-      crossorigin="anonymous"
-    ></script>
-    <script
-      src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"
-      integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6"
-      crossorigin="anonymous"
-    ></script>
-
+          <div class="sign-up-htm">
+            <div class="group">
+              <label for="user" class="label">Username</label>
+              <input id="user" type="text" class="input" />
+            </div>
+            <div class="group">
+              <label for="pass" class="label">Password</label>
+              <input
+                id="pass"
+                type="password"
+                class="input"
+                data-type="password"
+              />
+            </div>
+            <div class="group">
+              <label for="pass" class="label">Repeat Password</label>
+              <input
+                id="pass"
+                type="password"
+                class="input"
+                data-type="password"
+              />
+            </div>
+            <div class="group">
+              <label for="pass" class="label">Email Address</label>
+              <input id="pass" type="text" class="input" />
+            </div>
+            <div class="group">
+              <input type="submit" class="button" value="Sign Up" />
+            </div>
+            <div class="hr"></div>
+            <div class="foot-lnk">
+              <label for="tab-1">Already Member?</label>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
     <script src="assets/js/services.js" async defer></script>
     <script src="assets/js/index.js" async defer></script>
   </body>
