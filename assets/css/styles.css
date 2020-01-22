@@ -27,7 +27,7 @@ a {
   width: 100%;
   margin: auto;
   max-width: 525px;
-  min-height: 670px;
+  min-height: 330px;
   position: relative;
   background: url(https://image.myanimelist.net/ui/OK6W_koKDTOqqqLDbIoPArDh_2wfzEa6ACD1uRLC0Qk)
     no-repeat center;
@@ -98,10 +98,10 @@ a {
   border-radius: 25px;
   background: #d3d3d3;
 }
-.login-form .group input[data-type="password"] {
+/* .login-form .group input[data-type="password"] {
   text-security: circle;
   -webkit-text-security: circle;
-}
+} */
 .login-form .group .label {
   color: #454545;
   font-size: 12px;
@@ -169,4 +169,7 @@ a {
 }
 .foot-lnk {
   text-align: center;
+}
+.hide {
+  display: none;
 }
