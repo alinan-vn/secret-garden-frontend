@@ -221,7 +221,8 @@ function userPage(user) {
 
   const ul = document.createElement("ul");
   // user.books.forEach(book => renderBook(book, ul));
-  if (!!user.books) {
+  if (user.hasOwnProperty('books') && user.books.length > 0 ) {
+    console.log(user.books.length);
     for (let i = 0; i < user.books.length; i++) {
       const li = document.createElement("li");
       li.dataset.id = user.books[i].id;
@@ -235,9 +236,14 @@ function userPage(user) {
         li.append(rmvBtn);
       }
       ul.append(li);
+      main.append(h2,ul);
     }
+  } else {
+    const p = document.createElement('p');
+    p.innerHTML = "This Bookcase is empty";
+    main.append(h2,p);
+    console.log("hello");
   }
-  main.append(h2,ul);
 }
 
 // //Book Show Page
