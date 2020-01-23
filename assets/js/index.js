@@ -12,7 +12,7 @@ function removeChildElementsFor(parentElement) {
   let childElement;
   while (childElement = parentElement.lastElementChild) {
     parentElement.removeChild(childElement);
-  };
+  }
 }
 
 function fetchUsers() {
@@ -79,14 +79,14 @@ function clickListener() {
       break;
     case 'userlist':
       const userId = e.target.dataset.id;
-      fetch(API.users + userId)
-      .then(resp => resp.json())
-      .then(userPage);
+      renderBookcase(userId);
       break;
-    case 'add-button':
+    case 'bookpage-add-button':
       const bookAdd = e.target.dataset.bookId;
       postBookcase(bookAdd);
       break;
+    case 'remove-button':
+
     case 'books-index':
       fetchBooks();
       break;
@@ -133,7 +133,7 @@ function loginUser(uName) {
 
 function findUser(users,uName) {
   if (users.find(user => user.username.toLowerCase() === uName.toLowerCase())) {
-    const user = users.find(user => user.username.toLowerCase() === uName.toLowerCase())
+    const user = users.find(user => user.username.toLowerCase() === uName.toLowerCase());
     updateCurrentUser(user);
   }
 }
@@ -177,9 +177,15 @@ function postBookcase(bookId) {
   };
   fetch(API.bookcases,reqObj)
   .then(resp => resp.json())
-  .then();
+  .then(bookcase => renderBookcase(bookcase.data.user_id));
+  //what do we do after adding a book to bookcase
 }
 
+function renderBookcase(userId) {
+  fetch(API.users + userId)
+  .then(resp => resp.json())
+  .then(userPage);
+}
 
 function userPage(user) {
   const main = document.querySelector('main');
@@ -190,7 +196,7 @@ function userPage(user) {
 
   const ul = document.createElement("ul");
   // user.books.forEach(book => renderBook(book, ul));
-  
+  if (!!user.books) {
     for (let i = 0; i < user.books.length; i++) {
       const li = document.createElement("li");
       li.dataset.id = user.books[i].id;
@@ -204,8 +210,8 @@ function userPage(user) {
         li.append(rmvBtn);
       }
       ul.append(li);
-    
-  };
+    }
+  }
   main.append(h2,ul);
 }
 
@@ -237,14 +243,12 @@ function bookPage(book) {
   genre.innerHTML = `Genre: ${book.genre}`;
 
   main.append(h2,cover,h3,h4,desc,pages,genre);
-  const addBtn = document.createElement('button');
-  addBtn.innerText = "add to Bookcase";
-  addBtn.className = "add-button";
-  addBtn.dataset.bookId = bookId;
-  main.append(addBtn);
 
-  // needs add/read button, only shown if logged_in
-  if (!logged_in) {
-      addBtn.classList.toggle('hide');
-  };
+  if (logged_in) {
+    const addBtn = document.createElement('button');
+    addBtn.innerText = "add to Bookcase";
+    addBtn.className = "bookpage-add-button";
+    addBtn.dataset.bookId = bookId;
+    main.append(addBtn);
+  }
 }
