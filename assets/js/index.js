@@ -1,6 +1,7 @@
 let logged_in = false;
 let current_user;
 let current_user_books = [];
+let current_user_bookcases = [];
 
 (function main() {
   fetchBooks();
@@ -82,8 +83,14 @@ function clickListener() {
       renderBookcase(userId);
       break;
     case 'bookpage-add-button':
-      const bookAdd = e.target.dataset.bookId;
+      const bookAdd = e.target.parentNode.firstElementChild.dataset.bookId;
       postBookcase(bookAdd);
+      break;
+    case 'bookpage-remove-button':
+      const bookRemove = e.target.dataset.bookcaseId;
+      destroyBookcase(bookRemove);
+      document.querySelector('main').append(createAddButton());
+      document.querySelector('.bookpage-remove-button').remove();
       break;
     case 'remove-button':
       const bookcaseId = e.target.dataset.id;
@@ -144,6 +151,7 @@ function findUser(users,uName) {
 function updateCurrentUser(user) {
   current_user = user.id;
   current_user_books = user.books;
+  current_user_bookcases = user.bookcases;
   logged_in = true;
 
   const loginDiv = document.querySelector('.login-wrap');
@@ -240,6 +248,7 @@ function bookPage(book) {
 
   const h2 = document.createElement("h2");
   h2.innerHTML = book.title;
+  h2.dataset.bookId = bookId;
 
   const cover = document.createElement("img");
   cover.src = book.cover_image;
@@ -263,10 +272,20 @@ function bookPage(book) {
 
   const ownedBook = current_user_books.some( book => book.id  === bookId);
   if (logged_in && !ownedBook) {
-    const addBtn = document.createElement('button');
-    addBtn.innerText = "add to Bookcase";
-    addBtn.className = "bookpage-add-button";
-    addBtn.dataset.bookId = bookId;
-    main.append(addBtn);
-  } 
+    main.append(createAddButton());
+  } else if (logged_in && ownedBook) {
+    const rmvBtn = document.createElement('button');
+    rmvBtn.innerText = "remove from Bookcase";
+    rmvBtn.className = "bookpage-remove-button";
+    const bookcase = current_user_bookcases.find( bookcase => bookcase.book_id === bookId);
+    rmvBtn.dataset.bookcaseId = bookcase.id;
+    main.append(rmvBtn);
+  }
+}
+
+function createAddButton() {
+  const addBtn = document.createElement('button');
+  addBtn.innerText = "add to Bookcase";
+  addBtn.className = "bookpage-add-button";
+  return addBtn;
 }
