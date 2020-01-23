@@ -58,8 +58,17 @@ function renderBooks(books) {
 function renderBook(book, ul) {
   const li = document.createElement("li");
   li.dataset.id = book.id;
-  li.innerHTML = book.title;
   li.className = 'booklist';
+  const p = document.createElement('p');
+  p.innerHTML = book.title;
+  p.className = 'booklist';
+  p.dataset.id = book.id;
+  const coverImage = document.createElement('img');
+  coverImage.src = book.cover_image;
+  coverImage.width ='50';
+  coverImage.className = 'booklist';
+  coverImage.dataset.id = book.id;
+  li.append(coverImage,p);
   ul.append(li);
 }
 //fetchUsers
