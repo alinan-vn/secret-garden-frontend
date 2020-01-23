@@ -86,7 +86,10 @@ function clickListener() {
       postBookcase(bookAdd);
       break;
     case 'remove-button':
-
+      const bookcaseId = e.target.dataset.id;
+      destroyBookcase(bookcaseId);
+      deleteListItem(e);
+      break;
     case 'books-index':
       fetchBooks();
       break;
@@ -181,6 +184,20 @@ function postBookcase(bookId) {
   //what do we do after adding a book to bookcase
 }
 
+function destroyBookcase(id) {
+  const reqObj = {
+    "method": "DELETE",
+    "headers": API.headers
+  }
+  fetch(API.bookcases + id,reqObj)
+  .then(resp => resp.json())
+  .then(console.log);
+}
+
+function deleteListItem(click) {
+  click.target.parentNode.remove();
+}
+
 function renderBookcase(userId) {
   fetch(API.users + userId)
   .then(resp => resp.json())
@@ -244,11 +261,12 @@ function bookPage(book) {
 
   main.append(h2,cover,h3,h4,desc,pages,genre);
 
-  if (logged_in) {
+  const ownedBook = current_user_books.some( book => book.id  === bookId);
+  if (logged_in && !ownedBook) {
     const addBtn = document.createElement('button');
     addBtn.innerText = "add to Bookcase";
     addBtn.className = "bookpage-add-button";
     addBtn.dataset.bookId = bookId;
     main.append(addBtn);
-  }
+  } 
 }
