@@ -122,7 +122,7 @@ function findUser(users,uName) {
     const user = users.find(user => user.username.toLowerCase() === uName.toLowerCase())
     current_user = user.id;
     logged_in = true;
-
+    
     const loginDiv = document.querySelector('.login-wrap');
     loginDiv.classList.toggle('hide');
     const signin = document.querySelector('.signin');
