@@ -105,7 +105,7 @@ function clickListener() {
     case 'button signup':
       console.log(e.target.parentNode.previousElementSibling.lastElementChild.value);
       e.target.parentNode.previousElementSibling.lastElementChild.value = '';
-      
+      postUser();
       break;
     };
   });
@@ -122,12 +122,16 @@ function findUser(users,uName) {
     const user = users.find(user => user.username.toLowerCase() === uName.toLowerCase())
     current_user = user.id;
     logged_in = true;
+    
     const loginDiv = document.querySelector('.login-wrap');
     loginDiv.classList.toggle('hide');
     const signin = document.querySelector('.signin');
     signin.classList.toggle('hide');
-    const h2 = document.createElement('h2');
-    h2.innerHTML = `Welcome, ${user.username}<button class="signout">Sign Out</button>`;
+    const a = document.createElement('a');
+    a.innerHTML = `Welcome, ${user.username}  <button class="signout">Sign Out</button>`;
+    const ul = document.querySelector('ul');
+    ul.lastElementChild.append(a);
+    userPage(user);
   };
 }
 
@@ -156,10 +160,21 @@ function userPage(user) {
   h2.innerHTML = `${user.username}'s Bookcase`;
 
   const ul = document.createElement("ul");
-  user.books.forEach(book => renderBook(book, ul));
-  const userBooks = ul.children;
-  const rmvBtn = document.createElement('button');
-  userBooks.forEach(book => book.append(rmvBtn));
+  // user.books.forEach(book => renderBook(book, ul));
+  for (let i = 0; i < user.books.length; i++) {
+    const li = document.createElement("li");
+    li.dataset.id = user.books[i].id;
+    li.innerHTML = user.books[i].title;
+    li.className = 'booklist';
+    if (logged_in && user.id == current_user) {
+      const rmvBtn = document.createElement('button');
+      rmvBtn.innerText = "Remove";
+      rmvBtn.className = 'remove-button';
+      rmvBtn.dataset.id = user.bookcases[i].id;
+      li.append(rmvBtn);
+    }
+    ul.append(li);
+  };
   main.append(h2,ul);
 };
 
