@@ -278,7 +278,6 @@ function userPage(user) {
     const p = document.createElement('p');
     p.innerHTML = "This Bookcase is empty";
     main.append(h2,p);
-    console.log("hello");
   }
   const h4 = document.createElement('h4');
   h4.className = 'books-index';
