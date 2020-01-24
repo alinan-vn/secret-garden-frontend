@@ -265,6 +265,8 @@ function userPage(user) {
 
       ul.append(li);
       main.append(h2,ul);
+      // temp button hiding
+      hideButtons();
     }
   } else {
     const p = document.createElement('p');
@@ -316,7 +318,7 @@ function bookPage(book) {
     main.append(createAddButton());
   } else if (logged_in && ownedBook) {
     const rmvBtn = document.createElement('button');
-    rmvBtn.innerText = "remove from Bookcase";
+    rmvBtn.innerText = "Remove from Bookcase";
     rmvBtn.className = "bookpage-remove-button";
     const bookcase = current_user_bookcases.find( bookcase => bookcase.book_id === bookId);
     rmvBtn.dataset.bookcaseId = bookcase.id;

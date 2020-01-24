@@ -141,6 +141,34 @@ h2.user-bookcase {
 
 /* === END: Bookcases details page === */
 
+button.remove-button, button.bookpage-remove-button, button.bookpage-add-button {
+  background-color: #4CAF50; /* Green */
+  border: none;
+  color: white;
+  padding: 12px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  margin: 4px 2px;
+  cursor: pointer;
+}
+
+button.remove-button, button.bookpage-remove-button {
+  background-color: orangered;
+}
+
+button.bookpage-remove-button, button.bookpage-add-button {
+  border-radius: 20px;
+  margin-left: 50%;
+  margin-top: 7%;
+}
+
+button.remove-button {
+  border-radius: 60%;
+}
+
+
 /* === BEGIN: Footer === */
 
 footer {
