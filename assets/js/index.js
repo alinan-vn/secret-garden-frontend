@@ -169,8 +169,11 @@ function updateCurrentUser(user) {
   loginDiv.classList.toggle('hide');
   getSignin().classList.toggle('hide');
   const a = document.createElement('a');
-  a.innerHTML = `Welcome, ${user.username}  <button class="signout">Sign Out</button>`;
-  a.id = 'logged_in'
+  a.innerHTML = `Welcome, ${user.username}`;
+  const button = document.createElement('button');
+  button.className="signout"
+  button.innerText="Sign Out";
+  a.className = 'logged_in';
   const ul = document.querySelector('ul');
   ul.lastElementChild.append(a);
   userPage(user);
