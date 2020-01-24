@@ -1,0 +1,194 @@
+
+/** ===> Icon attribution links; may need to be displayed on page ===
+* (book.svg) Icons made by <a href="https://www.flaticon.com/authors/srip" title="srip">srip</a> from <a href="https://www.flaticon.com/" title="Flaticon"> www.flaticon.com</a>
+* (study.svg) Icons made by <a href="https://www.flaticon.com/authors/smashicons" title="Smashicons">Smashicons</a> from <a href="https://www.flaticon.com/" title="Flaticon"> www.flaticon.com</a>
+*/
+
+
+/* === BEGIN: Book listing + generic === */
+
+body {
+  font-family: Helvetica, "Trebuchet MS", sans-serif;
+  font-weight: normal;
+  font-size: 16px;
+}
+
+main {
+  margin-top: 7%;
+  display: block;
+  clear: both;
+  min-height: 1800px;
+}
+
+main ul {
+  margin-top: 6%;
+}
+
+main ul li {
+  list-style-type: none;
+  display: block;
+  clear: both;
+}
+
+main ul li:hover {
+  cursor: pointer;
+}
+
+main ul li p:hover, a:hover {
+  color: darkred;
+  text-decoration: underline;
+}
+
+main ul li img:hover {
+  opacity: 0.6;
+  border-radius: 8%;
+}
+
+main ul li img, main ul li p {
+  float: left;
+  margin-bottom: 2%;
+}
+
+main ul li img {
+  width: 200px;
+  height: 210px;
+  margin-top: 10%;
+  border-radius: 3%;
+}
+
+main ul li p {
+  clear: both;
+  display: block;
+  font-size: 1em;
+  margin-left: 3%;
+  margin-top: -1.1%;
+  margin-bottom: 2%;
+}
+
+main {
+  column-count: 4;
+  column-width: 20%;
+}
+
+p.heading {
+  column-span: all;
+  border-bottom: 1px solid goldenrod;
+}
+
+.btn {
+  background-color: #4CAF50; /* Green */
+  border: none;
+  color: white;
+  padding: 12px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  margin: 4px 2px;
+  cursor: pointer;
+}
+
+/* === END: Book listing + generic === */
+
+/* === BEGIN: Book detail page === */
+
+.book-details {
+  column-span: all;
+  margin-left: 12%;
+}
+
+img.book-details {
+  margin-left: 50%;
+  width: 280px;
+  height: 375px;
+  border-radius: 10px;
+}
+
+.book-details span {
+  color: darkred;
+  font-weight: normal;
+}
+
+/* === END: Book detail page === */
+
+/* === BEGIN: Bookcases listing page === */
+
+li.userlist {
+  margin-top: 20%;
+  background-image: url("../images/study.svg");
+  background-repeat: no-repeat;
+  background-position: left center;
+  background-size: 30px 50px;
+  padding-left: 15%;
+}
+
+li.userlist:hover {
+  color: darkred;
+  text-decoration: underline;
+}
+
+/* === END: Bookcases listing page === */
+
+/* === BEGIN: Bookcase details page === */
+
+
+/* === END: Bookcases details page === */
+
+/* === BEGIN: Footer === */
+
+footer {
+  border-top: 1px solid navy;
+  border-bottom: 1px solid navy;
+  margin: 10% auto;
+  padding: 1% 0.1% 0.5%;
+  text-align: center;
+}
+
+.highlight {
+  color: olivedrab;
+}
+
+/* === END: Footer === */
+
+/* ===| BEGIN: Overrides |=== */
+
+/* == BEGIN: login == */
+.login-wrap {
+  margin: 0 auto;
+  margin-left: 25%;
+  margin-top: 5%;
+  position: absolute;
+}
+
+.foot-lnk {
+  margin-top: -20%;
+  border-radius: 25px;
+  display: block;
+}
+
+.foot-lnk:hover, .button.signup:hover, #close-creds-btn:hover {
+  color: darkred;
+  cursor: pointer;
+}
+
+#user.input {
+  color: black;
+}
+
+#close-creds-btn {
+  margin-top: -73px;
+  display: block;
+  margin-bottom: 12%;
+  margin-left: 95%;
+  background-color: chocolate;
+  padding: 1%;
+  width: 63px;
+  border-radius: 8px;
+}
+
+
+/* == END: login == */
+
+/* ===| END: Overrides |=== */
+
+

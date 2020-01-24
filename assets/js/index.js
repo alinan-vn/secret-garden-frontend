@@ -27,6 +27,7 @@ function renderUsers(users) {
   removeChildElementsFor(main);
 
   const ul = document.createElement("ul");
+  ul.insertAdjacentHTML("afterbegin", '<p class="heading">Current bookcases</p>')
   users.forEach(user => renderUser(user, ul));
   main.append(ul);
 }
@@ -50,6 +51,8 @@ function renderBooks(books) {
   const main = document.querySelector('main');
   removeChildElementsFor(main);
 
+  main.insertAdjacentHTML("afterbegin", '<p class="heading">All available books</p>');
+
   const ul = document.createElement("ul");
   books.forEach(book => renderBook(book, ul));
   main.append(ul);
@@ -65,7 +68,6 @@ function renderBook(book, ul) {
   p.dataset.id = book.id;
   const coverImage = document.createElement('img');
   coverImage.src = book.cover_image;
-  coverImage.width ='50';
   coverImage.className = 'booklist';
   coverImage.dataset.id = book.id;
   li.append(coverImage,p);
@@ -269,19 +271,25 @@ function bookPage(book) {
   cover.src = book.cover_image;
 
   const h3 = document.createElement("h3");
-  h3.innerHTML = book.author;
+  h3.innerHTML = `<span>Author</span>: ${book.author}`;
 
   const h4 = document.createElement("h4");
-  h4.innerHTML = book.publisher;
+  h4.innerHTML = `<span>Publisher</span>: ${book.publisher}`;
 
   const desc = document.createElement("p");
-  desc.innerHTML = book.description;
+  desc.innerHTML = `<span>Description</span>: ${book.description}`;
 
   const pages = document.createElement("p");
-  pages.innerHTML = `${book.page_count} pages`;
+  pages.innerHTML = `<span>Pages</span>: ${book.page_count}`;
 
   const genre = document.createElement("p");
-  genre.innerHTML = `Genre: ${book.genre}`;
+  genre.innerHTML = `<span>Genre</span>: ${book.genre}`;
+
+  /** additional class (for specific styling for now) */
+  let els = [h2, cover, h3, h4, desc, pages, genre];
+  for (const el of els) {
+    el.classList.add("book-details");
+  }
 
   main.append(h2,cover,h3,h4,desc,pages,genre);
 
@@ -304,3 +312,5 @@ function createAddButton() {
   addBtn.className = "bookpage-add-button";
   return addBtn;
 }
+
+
