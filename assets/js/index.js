@@ -131,6 +131,9 @@ function clickListener() {
     case 'signout':
       signout();
       break;
+    case 'logged_in':
+      renderBookcase(current_user);
+      break;
     };
   });
 }
@@ -169,10 +172,13 @@ function updateCurrentUser(user) {
   loginDiv.classList.toggle('hide');
   getSignin().classList.toggle('hide');
   const a = document.createElement('a');
-  a.innerHTML = `Welcome, ${user.username}  <button class="signout">Sign Out</button>`;
-  a.id = 'logged_in'
+  a.innerHTML = `Welcome, ${user.username}  `;
+  a.className = 'logged_in';
+  const button = document.createElement('button');
+  button.className='signout';
+  button.innerText="Sign Out";
   const ul = document.querySelector('ul');
-  ul.lastElementChild.append(a);
+  ul.lastElementChild.append(a,button);
   userPage(user);
 }
 
@@ -274,6 +280,10 @@ function userPage(user) {
     main.append(h2,p);
     console.log("hello");
   }
+  const h4 = document.createElement('h4');
+  h4.className = 'books-index';
+  h4.innerText = "Go back to All Bookcases";
+  main.append(h4);
 }
 
 // Book Show Page
