@@ -1,3 +1,12 @@
+
+/** ===> Icon attribution links; may need to be displayed on page ===
+* (book.svg) Icons made by <a href="https://www.flaticon.com/authors/srip" title="srip">srip</a> from <a href="https://www.flaticon.com/" title="Flaticon"> www.flaticon.com</a>
+* (study.svg) Icons made by <a href="https://www.flaticon.com/authors/smashicons" title="Smashicons">Smashicons</a> from <a href="https://www.flaticon.com/" title="Flaticon"> www.flaticon.com</a>
+*/
+
+
+/* === BEGIN: Book listing + generic === */
+
 body {
   font-family: Helvetica, "Trebuchet MS", sans-serif;
   font-weight: normal;
@@ -66,7 +75,10 @@ p.heading {
   border-bottom: 1px solid goldenrod;
 }
 
-/* === Book detail page === */
+/* === END: Book listing + generic === */
+
+/* === BEGIN: Book detail page === */
+
 .book-details {
   column-span: all;
   margin-left: 12%;
@@ -86,7 +98,8 @@ img.book-details {
 
 /* === END: Book detail page === */
 
-/* === Bookcases listing page === */
+/* === BEGIN: Bookcases listing page === */
+
 li.userlist {
   margin-top: 20%;
   background-image: url("../images/study.svg");
@@ -94,8 +107,6 @@ li.userlist {
   background-position: left center;
   background-size: 30px 50px;
   padding-left: 15%;
-  /* Icons made by <a href="https://www.flaticon.com/authors/srip" title="srip">srip</a> from <a href="https://www.flaticon.com/" title="Flaticon"> www.flaticon.com</a> */
-  /* Icons made by <a href="https://www.flaticon.com/authors/smashicons" title="Smashicons">Smashicons</a> from <a href="https://www.flaticon.com/" title="Flaticon"> www.flaticon.com</a> */
 }
 
 li.userlist:hover {
@@ -105,12 +116,13 @@ li.userlist:hover {
 
 /* === END: Bookcases listing page === */
 
-/* === Bookcase details page === */
+/* === BEGIN: Bookcase details page === */
 
 
 /* === END: Bookcases details page === */
 
-/* === Footer === */
+/* === BEGIN: Footer === */
+
 footer {
   border-top: 1px solid navy;
   border-bottom: 1px solid navy;
@@ -122,6 +134,7 @@ footer {
 .highlight {
   color: olivedrab;
 }
+
 /* === END: Footer === */
 
 
