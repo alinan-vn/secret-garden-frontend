@@ -16,7 +16,6 @@ document.querySelector("#close-creds-btn").addEventListener("click", () => {
 // temporarily hide 'remove' buttons from bookcase listing page
 function hideButtons() {
   let btns = document.querySelectorAll("button.remove-button");
-  console.log("buttons: ", btns);
   for (let btn of btns) {
     btn.style.display = "none";
   }
