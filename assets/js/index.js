@@ -279,6 +279,7 @@ function bookPage(book) {
   let bookId = book.id;
   const main = document.querySelector('main');
   removeChildElementsFor(main);
+  window.scrollTo(0,0);
 
   const h2 = document.createElement("h2");
   h2.innerHTML = book.title;
