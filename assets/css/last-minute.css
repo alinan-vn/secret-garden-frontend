@@ -75,6 +75,19 @@ p.heading {
   border-bottom: 1px solid goldenrod;
 }
 
+.btn {
+  background-color: #4CAF50; /* Green */
+  border: none;
+  color: white;
+  padding: 12px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  margin: 4px 2px;
+  cursor: pointer;
+}
+
 /* === END: Book listing + generic === */
 
 /* === BEGIN: Book detail page === */
@@ -136,5 +149,46 @@ footer {
 }
 
 /* === END: Footer === */
+
+/* ===| BEGIN: Overrides |=== */
+
+/* == BEGIN: login == */
+.login-wrap {
+  margin: 0 auto;
+  margin-left: 25%;
+  margin-top: 5%;
+  position: absolute;
+}
+
+.foot-lnk {
+  margin-top: -20%;
+  border-radius: 25px;
+  display: block;
+}
+
+.foot-lnk:hover, .button.signup:hover, #close-creds-btn:hover {
+  color: darkred;
+  cursor: pointer;
+}
+
+#user.input {
+  color: black;
+}
+
+#close-creds-btn {
+  margin-top: -73px;
+  display: block;
+  margin-bottom: 12%;
+  margin-left: 95%;
+  background-color: chocolate;
+  padding: 1%;
+  width: 63px;
+  border-radius: 8px;
+}
+
+
+/* == END: login == */
+
+/* ===| END: Overrides |=== */
 
 
