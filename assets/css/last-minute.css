@@ -70,7 +70,7 @@ main {
   column-width: 20%;
 }
 
-p.heading {
+p.heading, h2.heading {
   column-span: all;
   border-bottom: 1px solid goldenrod;
 }
@@ -86,6 +86,10 @@ p.heading {
   font-size: 16px;
   margin: 4px 2px;
   cursor: pointer;
+}
+
+.red {
+  color: red;
 }
 
 /* === END: Book listing + generic === */
@@ -130,7 +134,10 @@ li.userlist:hover {
 /* === END: Bookcases listing page === */
 
 /* === BEGIN: Bookcase details page === */
-
+h2.user-bookcase {
+  /* column-span: all; */
+  text-align: center;
+}
 
 /* === END: Bookcases details page === */
 

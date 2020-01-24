@@ -229,6 +229,7 @@ function userPage(user) {
 
   const h2 = document.createElement('h2');
   h2.innerHTML = `${user.username}'s Bookcase`;
+  h2.className = "heading user-bookcase";
 
   const ul = document.createElement("ul");
   // user.books.forEach(book => renderBook(book, ul));
@@ -236,9 +237,24 @@ function userPage(user) {
     console.log(user.books.length);
     for (let i = 0; i < user.books.length; i++) {
       const li = document.createElement("li");
-      li.dataset.id = user.books[i].id;
-      li.innerHTML = user.books[i].title;
-      li.className = 'booklist';
+
+      const bookTitle = document.createElement('p');
+      bookTitle.setAttribute("title", "Book title");
+      bookTitle.innerHTML = user.books[i].title;
+
+      const bookCover = document.createElement('img');
+      bookCover.setAttribute("title", "Book cover image");
+      bookCover.setAttribute("src", user.books[i].cover_image);
+
+      // 'class' and 'data-id' setup
+      let targetElements = [li, bookTitle, bookCover];
+      for (const targetElement of targetElements) {
+        targetElement.className = 'booklist';
+        targetElement.dataset.id = user.books[i].id;
+      }
+
+      li.append(bookCover, bookTitle);
+
       if (logged_in && user.id == current_user) {
         const rmvBtn = document.createElement('button');
         rmvBtn.innerText = "Remove";
@@ -246,6 +262,7 @@ function userPage(user) {
         rmvBtn.dataset.id = user.bookcases[i].id;
         li.append(rmvBtn);
       }
+
       ul.append(li);
       main.append(h2,ul);
     }
@@ -257,7 +274,7 @@ function userPage(user) {
   }
 }
 
-// //Book Show Page
+// Book Show Page
 function bookPage(book) {
   let bookId = book.id;
   const main = document.querySelector('main');
